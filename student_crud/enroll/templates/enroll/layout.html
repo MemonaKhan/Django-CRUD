@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +9,17 @@
     <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
 </head>
 <body>
-    {% body block %}
+    <div class="container mt-5">
+        <h4 class="p-2  alert-primary">Student's Information CRUD Project</h4>
+    
+    {% block body %}
 
 
-    {% endbody%}
-
+    {% endblock body%}
+</div>
+    <script src="{% static 'enroll/js/jquery.js' %}"></script>
+    <script src="{% static 'enroll/js/popper.js' %}"></script>
+    <script src="{% static 'enroll/js/bootstrap.js' %}"></script>
     
 </body>
 </html>
