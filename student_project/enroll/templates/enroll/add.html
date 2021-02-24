@@ -7,7 +7,9 @@
         {% csrf_token %}     <!-- whenever use form use csrf token-->
         {{form.as_p}}
         <input type="submit" class="btn btn-success" value="Add">
+        <a href="{% url 'index' %}" class="btn btn-warning">Back</a>
     </form>
+
 </div>
 
 

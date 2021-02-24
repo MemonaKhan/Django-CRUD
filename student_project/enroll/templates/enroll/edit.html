@@ -8,8 +8,10 @@
     <form action="" method="post">
         {% csrf_token %}     <!-- whenever use form use csrf token-->
         {{form.as_p}}
-        <input type="submit" class="btn btn-success" value="Add">
+        <input type="submit" class="btn btn-success" value="Update">
+        <a href="{% url 'index' %}" class="btn btn-warning">Back</a>
     </form>
+
 </div>
 
 
