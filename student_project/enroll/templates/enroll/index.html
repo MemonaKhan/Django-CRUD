@@ -1,14 +1,47 @@
 <!-- Read/ Show Data -->
 {% extends "enroll/layout.html" %}
 {% block body %}
-
-<h3>
+<div class="container col-md-8 px-5 mt-5 bg-light">
+<h3 class="heading">
     Student's Information
 </h3>
+{% if data %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for std in data%}
+      <tr>
+        <th scope="row">{{std.id}}</th>
+        <td>{{std.name}}</td>
+        <td>{{std.email}}</td>
+        <td>{{std.password}}</td>
+        <td>
+            <!-- <form action="" method="post"></form> --> <!--Can also do this and use requestmethod-->
+            <a href="#" class="btn btn-success">Edit</a>
+            <a href="{% url 'delete' std.id %}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+
+<h4 class="alert alert-warning"> No Record Found </h4>
+
+  {% endif %}
 
 
 
+ 
 
-
-
+</div>
 {% endblock body %}

@@ -1,17 +1,37 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from .forms import StudentReg
+from .models import Student
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'enroll/index.html')
+    stud = Student.objects.all()
+    return render(request, 'enroll/index.html',{'data':stud})
     # return render(request, 'tasks/list.html', context)
-
+ 
 def add(request):
     if request.method == 'POST':
         fm = StudentReg(request.POST)
+        if fm.is_valid():
+            nm = fm.cleaned_data['name']
+            em = fm.cleaned_data['email']
+            pw = fm.cleaned_data['password']
+            reg = Student(name=nm,email=em,password=pw)
+            reg.save()
+            
+            stud = Student.objects.all()
+            return HttpResponseRedirect('/')
+
+            # return render(request, 'enroll/index.html',{'data':stud})
+
+
+            # fm.save()            # also easy and better way for saving all data in database
+        # fm = StudentReg()          # here we do some logic to alert user about data is added or not
+
+
+
     else:
         fm = StudentReg()
     
@@ -21,5 +41,5 @@ def update(request):
     return render(request, 'enroll/edit.html')
 
 
-def delete(request):
-    return render(request, 'enroll/delete.html')
+def delete(request,id):
+    
