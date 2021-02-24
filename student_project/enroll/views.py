@@ -37,8 +37,19 @@ def add(request):
     
     return render(request, 'enroll/add.html', {'form':fm})
 
-def update(request):
-    return render(request, 'enroll/edit.html')
+def update(request,id):
+    if request.method == 'POST':
+        std = Student.objects.get(pk=id)
+        fm = StudentReg(request.POST, instance=std)
+        if fm.is_valid():
+            fm.save()
+        return HttpResponseRedirect('/')
+        
+    else:
+        std = Student.objects.get(pk=id)
+        fm = StudentReg(instance=std)
+    return render(request, 'enroll/edit.html',{'form':fm})
+
 
 
 def delete(request,id):

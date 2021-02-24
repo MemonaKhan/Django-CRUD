@@ -25,7 +25,7 @@
         <td>{{std.password}}</td>
         <td>
             <!-- <form action="" method="post"></form> --> <!--Can also do this and use requestmethod-->
-            <a href="#" class="btn btn-success">Edit</a>
+            <a href="{% url 'update' std.id %}" class="btn btn-success">Edit</a>
             <a href="{% url 'delete' std.id %}" class="btn btn-danger">Delete</a>
         </td>
       </tr>
