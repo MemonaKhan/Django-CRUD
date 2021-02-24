@@ -42,4 +42,9 @@ def update(request):
 
 
 def delete(request,id):
-    
+    # if request.method == 'POST':         # use when button from form
+        std = Student.objects.get(pk=id)
+        std.delete()
+        return HttpResponseRedirect('/')
+    # return render(request, 'enroll/index.html')
+    # return render(request, 'enroll/delete.html')
